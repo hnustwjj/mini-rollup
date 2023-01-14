@@ -10,13 +10,15 @@ class Bundle {
     const { entry } = options
 
     // 入口文件的绝对路径,包括后缀
+    // TODO: 因为目前测试是ts后缀，所以先解析成ts
+
     this.entryPath = `${entry.replace(/\.ts$/, '')}.ts`
     // 存放着所有模块,入口文件和它依赖的模块
     this.modules = {}
   }
 
   build(outputFileName: string) {
-    // 从入口文件的绝对路径出发,找到对应模块, 创建并返回Module对象
+    // 从入口文件的绝对路径出发,找到入口模块, 创建并返回Module对象
     const entryModule = this.fetchModule(this.entryPath)
     // 把这个入口模块的所有语句进行展开,返回所有语句组成的数组
     this.nodes = entryModule?.expandAllStatements() ?? {}
