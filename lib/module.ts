@@ -120,9 +120,11 @@ class Module {
       const importDeclaration = this.imports[name]
       // 获取msg模块
       const module = this.bundle.fetchModule(importDeclaration.source, this.path)
+
       // 获取msg模块导出的name
       //   this.exports.a = {node,localName:"name",expression:const name = 1对应的结点}
       const exportDeclaration = module?.exports[importDeclaration.name]
+
       // 递归调用，有可能msg的name也是从其他地方导入的
       return module?.define(exportDeclaration.localName)
     }

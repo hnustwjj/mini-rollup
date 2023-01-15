@@ -24,7 +24,9 @@ class Bundle {
     const entryModule = this.fetchModule(this.entryPath)
     // 把这个入口模块的所有语句进行展开,返回所有语句组成的数组
     this.nodes = entryModule?.expandAllStatements() ?? {}
+
     const { code } = this.generate()
+
     fs.writeFileSync(outputFileName, code, 'utf-8')
   }
 
