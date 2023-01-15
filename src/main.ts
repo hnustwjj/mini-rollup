@@ -1,3 +1,2 @@
-console.log('hello')
-console.log('hello')
-const a = 1
+import { default as name } from './a'
+import b from './b'

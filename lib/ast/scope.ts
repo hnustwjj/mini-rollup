@@ -1,18 +1,22 @@
 class Scope {
   name
   parent
+  names
   params
-  constructor(options: { name?: string; parent?: Scope; params?: string[] } = {}) {
+  constructor(options: { name?: string; parent?: Scope; params?: string[]; names?: string } = {}) {
     // 作用域的名称
     this.name = options.name
     // 父作用域
     this.parent = options.parent
     // 此作用域内定义的变量
+    this.names = options.names || []
+
+    // 函数作用域定义的参数也是该作用域的变量
     this.params = options.params || []
   }
 
   add(name) {
-    this.params.push(name)
+    this.names.push(name)
   }
 
   // 递归向上找到包含当前变量名name的作用域
