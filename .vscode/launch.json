@@ -11,8 +11,10 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "runtimeArgs": ["-r","ts-node/register","-r","tsconfig-paths/register"],
-            "program": "${workspaceFolder}/dist/index.js",
+            "runtimeArgs": [
+                "-r","ts-node/register","-r","tsconfig-paths/register"
+            ],
+            "program": "${workspaceFolder}/scripts/index.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
