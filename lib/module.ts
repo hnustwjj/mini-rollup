@@ -46,7 +46,6 @@ class Module {
           const localName = specifier.local.name
           // 导入的变量: name
           const name = specifier.imported?.name ?? localName
-          console.log(name)
 
           // 记录本地的哪个变量是从哪个模块的哪个变量导出的
           // this.imports.age = {name:"name",localName:"n",source:"./msg"}
@@ -68,8 +67,6 @@ class Module {
         }
       }
     })
-    console.log(this)
-
     analysis(this.ast, this.code, this)
     this.ast.body.forEach((statement) => {
       Object.keys(statement._defines).forEach((name) => {
@@ -88,6 +85,7 @@ class Module {
         return
 
       const statements = this.expandStatement(statement)
+
       allStatements.push(...statements)
     })
     return allStatements
@@ -99,10 +97,14 @@ class Module {
     const res = [] as any[]
 
     const depend = Object.keys(statement._dependsOn)// 外部依赖
+    console.log(111)
+
     depend.forEach((name) => {
       const definition = this.define(name)
       res.push(...definition)
     })
+
+    // fixme
     if (!statement._included) {
       statement._included = true
       // tree shaking核心
@@ -126,11 +128,13 @@ class Module {
       const exportDeclaration = module?.exports[importDeclaration.name]
 
       // 递归调用，有可能msg的name也是从其他地方导入的
-      return module?.define(exportDeclaration.localName)
+      const res = module?.define(exportDeclaration.localName)
+
+      return res
     }
     else {
       const statement = this.definitions[name]
-      return (statement && !statement.included)
+      return (statement && !statement._included)
         ? this.expandStatement(statement)
         : []
     }

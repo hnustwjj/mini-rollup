@@ -1,4 +1,5 @@
 import { name } from './msg'
 
-const a = 1
-console.log(name)
+let a = 1
+
+a = a + name

@@ -38,7 +38,6 @@ class Module {
                     const localName = specifier.local.name;
                     // 导入的变量: name
                     const name = (_b = (_a = specifier.imported) === null || _a === void 0 ? void 0 : _a.name) !== null && _b !== void 0 ? _b : localName;
-                    console.log(name);
                     // 记录本地的哪个变量是从哪个模块的哪个变量导出的
                     // this.imports.age = {name:"name",localName:"n",source:"./msg"}
                     this.imports[localName] = { name, localName, source };
@@ -59,7 +58,6 @@ class Module {
                 }
             }
         });
-        console.log(this);
         (0, analysis_1.default)(this.ast, this.code, this);
         this.ast.body.forEach((statement) => {
             Object.keys(statement._defines).forEach((name) => {
@@ -109,11 +107,12 @@ class Module {
             //   this.exports.a = {node,localName:"name",expression:const name = 1对应的结点}
             const exportDeclaration = module === null || module === void 0 ? void 0 : module.exports[importDeclaration.name];
             // 递归调用，有可能msg的name也是从其他地方导入的
-            return module === null || module === void 0 ? void 0 : module.define(exportDeclaration.localName);
+            const res = module === null || module === void 0 ? void 0 : module.define(exportDeclaration.localName);
+            return res;
         }
         else {
             const statement = this.definitions[name];
-            return (statement && !statement.included)
+            return (statement && !statement._included)
                 ? this.expandStatement(statement)
                 : [];
         }

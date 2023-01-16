@@ -29,7 +29,6 @@
     "@babel/core": "^7.20.12",
     "@babel/parser": "^7.20.7",
     "acorn": "^8.8.1",
-    "axios": "^1.2.2",
     "cross-spawn": "^7.0.3",
     "magic-string": "^0.27.0"
   }

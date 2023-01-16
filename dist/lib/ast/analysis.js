@@ -22,16 +22,17 @@ function analysis(ast, magicString, moduleInstance) {
             _source: { value: magicString.snip(statement.start, statement.end) },
             _defines: { value: {} },
             _dependsOn: { value: {} },
-            _included: { value: true, writable: true }, // 判断当前语句是否被打包，防止多次打包
+            _included: { value: false, writable: true }, // 判断当前语句是否被打包，防止多次打包
         });
         // 给作用域添加变量
         // 例如function test()，那么name就是test
-        function addToScope(identifierName) {
-            currentScope.add(identifierName); // 把test加入作用域
+        function addToScope(identifierNode) {
+            const name = identifierNode.id.name;
+            currentScope.add(name); // 把test加入作用域
             // 如果当前是全局作用域
             if (!currentScope.parent)
                 // 标记全局作用域下声明了test这个变量
-                statement._defines[identifierName] = true;
+                statement._defines[name] = true;
         }
         // 构建作用域链, 保存所有变量params
         (0, walk_1.default)(statement, {
@@ -42,7 +43,7 @@ function analysis(ast, magicString, moduleInstance) {
                         // 函数的参数也是函数内声明的变量
                         const params = node.params.map(x => x.name);
                         // 拿到identifier内保存的name标识符
-                        addToScope(node.id.name);
+                        addToScope(node);
                         // 如果是顶层的函数声明，会生成新的作用域
                         newScope = new scope_1.default({
                             parent: currentScope,

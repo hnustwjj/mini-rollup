@@ -12,8 +12,8 @@ class Bundle {
     const { entry } = options
 
     // 入口文件的绝对路径,包括后缀
-    // TODO: 因为目前测试是ts后缀，所以先解析成ts
-    this.entryPath = `${entry.replace(/\.ts$/, '')}.ts`
+    // TODO: 因为目前测试是js后缀，所以先解析成js
+    this.entryPath = `${entry.replace(/\.js$/, '')}.js`
 
     // 存放着所有模块,入口文件和它依赖的模块
     this.modules = {}
@@ -33,6 +33,7 @@ class Bundle {
   // 把this.nodes生成代码
   generate() {
     const magicString = new MagicString.Bundle()
+
     this.nodes.forEach((node) => {
       const source = node._source.clone()
 
@@ -55,7 +56,7 @@ class Bundle {
         : path.isAbsolute(importee) // 如果是绝对路径
           ? importee
           // import a from './msg.ts' 根据importer路径去解析importee路径
-          : path.resolve(path.dirname(importer), `${importee.replace(/\.ts$/, '')}.ts`)
+          : path.resolve(path.dirname(importer), `${importee.replace(/\.js$/, '')}.js`)
 
     // 如果存在对应的文件
     if (route) {
