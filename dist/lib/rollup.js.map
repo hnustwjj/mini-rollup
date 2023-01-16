@@ -1,0 +1,1 @@
+{"version":3,"file":"rollup.js","sourceRoot":"","sources":["../../lib/rollup.ts"],"names":[],"mappings":";;;;;AAAA,sDAA6B;AAE7B,SAAS,MAAM,CAAC,KAAa,EAAE,cAAsB;IACnD,0BAA0B;IAC1B,MAAM,MAAM,GAAG,IAAI,gBAAM,CAAC,EAAE,KAAK,EAAE,CAAC,CAAA;IACpC,MAAM,CAAC,KAAK,CAAC,cAAc,CAAC,CAAA;AAC9B,CAAC;AAED,kBAAe,MAAM,CAAA"}

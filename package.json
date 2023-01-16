@@ -2,8 +2,7 @@
   "name": "learn-rollup",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "dist/src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,13 +21,15 @@
     "@antfu/eslint-config": "^0.34.1",
     "@types/node": "^18.11.18",
     "eslint": "^8.31.0",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.2",
     "typescript": "^4.9.4"
   },
   "dependencies": {
     "@babel/core": "^7.20.12",
     "@babel/parser": "^7.20.7",
     "acorn": "^8.8.1",
-    "magic-string": "^0.27.0",
-    "ts-node": "^10.9.1"
+    "axios": "^1.2.2",
+    "magic-string": "^0.27.0"
   }
 }
