@@ -1,5 +1,5 @@
-import { name } from './msg'
+import { age, name } from './msg'
 
-let a = 1
+const a = 1
 
-a = a + name
+console.log(age)

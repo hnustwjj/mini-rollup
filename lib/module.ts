@@ -97,11 +97,9 @@ class Module {
     const res = [] as any[]
 
     const depend = Object.keys(statement._dependsOn)// 外部依赖
-    console.log(111)
-
     depend.forEach((name) => {
       const definition = this.define(name)
-      res.push(...definition)
+      definition && res.push(definition)
     })
 
     // fixme
@@ -134,9 +132,12 @@ class Module {
     }
     else {
       const statement = this.definitions[name]
-      return (statement && !statement._included)
-        ? this.expandStatement(statement)
-        : []
+      if (statement && !statement._included) {
+        statement._included = true
+        return statement
+      }
+
+      return null
     }
   }
 }

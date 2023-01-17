@@ -33,10 +33,8 @@ class Bundle {
   // 把this.nodes生成代码
   generate() {
     const magicString = new MagicString.Bundle()
-
     this.nodes.forEach((node) => {
       const source = node._source.clone()
-
       // 移除export
       if (node.type === EXPORT_NAMED_DECLARATION)
         source.remove(node.start, node.declaration.start)
@@ -59,7 +57,7 @@ class Bundle {
           : path.resolve(path.dirname(importer), `${importee.replace(/\.js$/, '')}.js`)
 
     // 如果存在对应的文件
-    if (route) {
+    if (fs.existsSync(route)) {
       // 根据绝对路径读取源代码
       const code = fs.readFileSync(route, 'utf-8')
       const module = new Module({
