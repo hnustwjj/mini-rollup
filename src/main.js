@@ -1,7 +1,7 @@
 import { age, name } from './msg'
 
 function test() {
-  console.log(age, name)
+  console.log(age)
 }
 
 test()
