@@ -1,3 +1,6 @@
-const a = 1
 const age = 2
-console.log(age)
+const name = 1
+function test() {
+  console.log(age, name)
+}
+test()

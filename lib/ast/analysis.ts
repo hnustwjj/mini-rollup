@@ -29,9 +29,10 @@ function analysis(ast, magicString, moduleInstance) {
       currentScope.add(name) // 把test加入作用域
 
       // 如果当前是全局作用域
-      if (!currentScope.parent)
-      // 标记全局作用域下声明了test这个变量
+      if (!currentScope.parent) {
+        // 标记全局作用域下声明了test这个变量
         statement._defines[name] = true
+      }
     }
 
     // 构建作用域链, 保存所有变量params
@@ -86,6 +87,9 @@ function analysis(ast, magicString, moduleInstance) {
           const definingScope = currentScope.findDefiningScope(node.name)
           // 如果没定义，说明该变量是依赖的外部变量
           if (!definingScope) {
+            if (node.name === 'test')
+              console.log(definingScope, node.name, currentScope)
+
             // TODO:本地声明的变量也会被标记为true
             statement._dependsOn[node.name] = true
           }

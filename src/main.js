@@ -1,5 +1,7 @@
 import { age, name } from './msg'
 
-const a = 1
+function test() {
+  console.log(age, name)
+}
 
-console.log(age)
+test()

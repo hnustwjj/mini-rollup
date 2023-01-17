@@ -21,7 +21,8 @@ class Scope {
 
   // 递归向上找到包含当前变量名name的作用域
   findDefiningScope(name) {
-    if (this.params.includes(name))
+    // 判断当前作用域中是否有该变量
+    if (this.params.includes(name) || this.names.includes(name))
       return this
 
     else if (this.parent)

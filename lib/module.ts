@@ -102,7 +102,6 @@ class Module {
       definition && res.push(definition)
     })
 
-    // fixme
     if (!statement._included) {
       statement._included = true
       // tree shaking核心
