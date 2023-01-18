@@ -5,6 +5,7 @@ import { EXPORT_NAMED_DECLARATION, IMPORT_DECLARATION, VARIABLE_DECLARATION } fr
 import analysis from './ast/analysis'
 import type Bundle from './bundle'
 import { hasOwnP } from './utils'
+
 class Module {
   code: MagicString
   path: string
@@ -77,6 +78,7 @@ class Module {
     })
   }
 
+  // 展开顶层节点
   expandAllStatements() {
     const allStatements = [] as any[]
     this.ast.body.forEach((statement) => {
@@ -102,6 +104,7 @@ class Module {
       definition && res.push(definition)
     })
 
+    // TODO: 其实这里还没做到完全的treeshaking，如果入口文件中，不依赖外部模块的变量并且没调用，它还是会加入打包
     if (!statement._included) {
       statement._included = true
       // tree shaking核心

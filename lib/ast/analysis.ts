@@ -87,9 +87,6 @@ function analysis(ast, magicString, moduleInstance) {
           const definingScope = currentScope.findDefiningScope(node.name)
           // 如果没定义，说明该变量是依赖的外部变量
           if (!definingScope) {
-            if (node.name === 'test')
-              console.log(definingScope, node.name, currentScope)
-
             // TODO:本地声明的变量也会被标记为true
             statement._dependsOn[node.name] = true
           }
