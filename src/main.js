@@ -1,5 +1,3 @@
-function say() {
-  console.log(1)
-}
+import { age, name } from './msg'
 
-say()
+console.log(name)

@@ -1,4 +1,3 @@
-import { stat } from 'fs'
 import MagicString from 'magic-string'
 import { parse } from 'acorn'
 import { EXPORT_NAMED_DECLARATION, IMPORT_DECLARATION, VARIABLE_DECLARATION } from './instance'
