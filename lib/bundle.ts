@@ -8,6 +8,7 @@ class Bundle {
   entryPath
   modules: Record<string, any>
   nodes: any
+
   constructor(options: { entry: string }) {
     const { entry } = options
 
@@ -62,7 +63,7 @@ class Bundle {
       const code = fs.readFileSync(route, 'utf-8')
       const module = new Module({
         code,
-        path: importee,
+        path: route,
         // 归属与哪个bundle对象
         bundle: this,
       })
